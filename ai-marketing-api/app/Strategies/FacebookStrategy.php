@@ -16,11 +16,8 @@ class FacebookStrategy implements ContentStrategyInterface
 
     public function generate(string $product, string $description)
     {
-        $prompt = "
-        Write a Facebook marketing post for product: $product.
-
+        $prompt = "Write a Facebook marketing post for product: $product.
         Description: $description
-
         Include:
         - engaging caption
         - call to action

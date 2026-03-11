@@ -17,13 +17,13 @@ class SeoStrategy implements ContentStrategyInterface
     public function generate(string $product, string $description)
     {
         $prompt = "
-        Generate SEO blog content for product: $product
+        Generate SEO blog content for product: $product.
 
         Include:
         - SEO title
-        - Meta description
+        - meta description
         - 10 keywords
-        - Blog outline
+        - blog outline
         ";
 
         return $this->ai->generate($prompt);
