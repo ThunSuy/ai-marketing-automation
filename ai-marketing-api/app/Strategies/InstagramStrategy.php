@@ -17,12 +17,25 @@ class InstagramStrategy implements ContentStrategyInterface
     public function generate(string $product, string $description)
     {
         $prompt = "
-        Create Instagram caption for $product.
+        Generate an Instagram marketing caption.
 
-        Include:
+        Product: $product
+        Description: $description
+
+        Requirements:
         - short engaging caption
-        - emojis
-        - 10 trending hashtags
+        - include emojis
+        - include 8-10 trending hashtags
+        - include call to action
+
+        Return ONLY JSON in this format:
+
+        {
+        \"title\": \"...\",
+        \"caption\": \"...\",
+        \"hashtags\": [\"#...\",\"#...\"],
+        \"cta\": \"...\"
+        }
         ";
 
         return $this->ai->generate($prompt);

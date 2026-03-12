@@ -27,8 +27,16 @@ class AIService
 
         // return $response->json();
         $data = $response->json();
-        // dd($data);
+        $content = $data['choices'][0]['message']['content'] ?? "{}";
 
-        return $data['choices'][0]['message']['content'] ?? "No response";
+        /* Extract JSON from AI response */
+
+        preg_match('/\{.*\}/s', $content, $matches);
+
+        $json = $matches[0] ?? "{}";
+
+        $result = json_decode($json, true);
+
+        return $result ?? ["raw" => $content];
     }
 }

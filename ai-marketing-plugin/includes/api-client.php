@@ -18,12 +18,12 @@ function ai_generate_content($product, $platform, $description)
     );
 
     if (is_wp_error($response)) {
-        return "API Error";
+        return ["error" => "API request failed"];
     }
 
     $body = wp_remote_retrieve_body($response);
     $data = json_decode($body, true);
 
-    return $data['content'] ?? "No response";
+    return $data['content'] ?? ["error" => "No response from API"];
 
 }

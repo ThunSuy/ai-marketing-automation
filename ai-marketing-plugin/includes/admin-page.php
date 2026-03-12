@@ -60,7 +60,15 @@ function ai_marketing_page()
         $result = ai_generate_content($product, $platform, $description);
 
         echo "<h3>Result</h3>";
-        echo "<p>" . $result . "</p>";
+
+        if (isset($result['error'])) {
+            echo "<p>" . $result['error'] . "</p>";
+        } else {
+            echo "<h2>" . $result['title'] . "</h2>";
+            echo "<p>" . $result['caption'] . "</p>";
+            echo "<p><strong>" . $result['cta'] . "</strong></p>";
+            echo "<p>" . implode(" ", $result['hashtags']) . "</p>";
+        }
 
     }
 

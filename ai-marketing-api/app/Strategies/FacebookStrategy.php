@@ -16,12 +16,20 @@ class FacebookStrategy implements ContentStrategyInterface
 
     public function generate(string $product, string $description)
     {
-        $prompt = "Write a Facebook marketing post for product: $product.
+        $prompt = "
+        Generate a Facebook marketing post.
+
+        Product: $product
         Description: $description
-        Include:
-        - engaging caption
-        - call to action
-        - 5 hashtags
+
+        Return ONLY JSON format like this:
+
+        {
+        \"title\": \"...\",
+        \"caption\": \"...\",
+        \"hashtags\": [\"#...\",\"#...\"],
+        \"cta\": \"...\"
+        }
         ";
 
         return $this->ai->generate($prompt);
